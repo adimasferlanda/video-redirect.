@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Saya</title>
+</head>
+<body>
+  <h2>Video Saya</h2>
+
+  <video id="video" width="100%" controls playsinline>
+    <source src="./video.mp4" type="video/mp4">
+  </video>
+
+  <p id="status">Putar video untuk memulai.</p>
+
+  <script>
+    const video = document.getElementById("video");
+    const status = document.getElementById("status");
+
+    const LINK_TUJUAN = "https://s.shopee.co.id/8fTMz4LNmE";
+    const WAKTU_REDIRECT = 15;
+    let sudahRedirect = false;
+
+    video.addEventListener("timeupdate", () => {
+      if (sudahRedirect) return;
+
+      if (video.currentTime >= WAKTU_REDIRECT) {
+        sudahRedirect = true;
+        status.textContent = "Mengalihkan halaman...";
+        window.location.href = LINK_TUJUAN;
+      }
+    });
+  </script>
+</body>
+</html>
